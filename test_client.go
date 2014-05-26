@@ -16,7 +16,7 @@ func (t *TestClient) Sent() []sentMessage {
 	return t.sentMessages
 }
 
-func (t *TestClient) Send(m *Message) {
+func (t *TestClient) Send(m *Message) error {
 	sent := sentMessage{
 		From:    m.from,
 		To:      m.to,
@@ -26,6 +26,7 @@ func (t *TestClient) Send(m *Message) {
 	}
 
 	t.sentMessages = append(t.sentMessages, sent)
+	return nil
 }
 
 type sentMessage struct {

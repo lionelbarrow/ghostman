@@ -1,13 +1,13 @@
 # Ghostman
 
-Ghostman is an easy-to-use, easy-to-test email client for Go.
+Ghostman is an easy-to-use, easy-to-test email client for Go. It currently is mostly a wrapper around `sendmail`.
 
 ### Usage
 
 ```go
-client := ghostman.NewClient()
+client := ghostman.NewClient("/usr/sbin/sendmail")
 
-client.Message().
+err := client.Message().
   From("sender@test.com").
   To("receiver@test.com").
   ReplyTo("reply-to@test.com").
@@ -28,4 +28,4 @@ Simple, right? If you want to test that other parts of your program send email c
   }
 ```
 
-I'm going to start by only supporting plain-text messages delivered via `sendmail`, but if people are interested I'll add more and more sophistication to the wrapping layer and maybe an `smtp` package wrapper as well.
+I'm going to start by only supporting plain-text messages, but if people are interested I'll add more and more sophistication to the wrapping layer. We could also add support for a wrapper around the SMTP standard library package as well.

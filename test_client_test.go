@@ -39,3 +39,26 @@ func TestTestClient(t *testing.T) {
 		t.Fatalf("Got incorrect body: %s", message.Body)
 	}
 }
+
+func TestMessageString(t *testing.T) {
+	client := NewTestClient()
+
+	from := "sender@test.com"
+	to := "receiver@test.com"
+	replyTo := "reply-to@test.com"
+	subject := "Test Subject!"
+	body := "Test body!"
+
+	message := client.Message().
+		From(from).
+		To(to).
+		ReplyTo(replyTo).
+		Subject(subject).
+		Body(body)
+
+	expected := "From: sender@test.com\nReply-To: reply-to@test.com\nTo: receiver@test.com\nSubject: Test Subject!\nMime-Version: 1.0\nContent-Type: text/plain; charset=utf-8\n\nTest body!\n\n"
+
+	if message.String() != expected {
+		t.Fatalf("Got incorrect message. Expected:\n%s\nReceived:\n%s", expected, message.String())
+	}
+}
