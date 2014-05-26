@@ -2,6 +2,8 @@
 
 Ghostman is an easy-to-use, easy-to-test email client for Go. It currently is mostly a wrapper around `sendmail`.
 
+Ghostman is not ready for production use yet.
+
 ### Usage
 
 ```go
